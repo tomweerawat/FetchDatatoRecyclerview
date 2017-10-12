@@ -1,6 +1,7 @@
 package com.example.hotumit.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -30,13 +31,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 /**
  * Created by HOTUM IT on 11/10/2560.
  */
 
-public class PullData extends AppCompatActivity {
+public class PullData extends AppCompatActivity implements ClickListener {
 
     Retrofit retrofit;
     MyApi retrofit_service;
@@ -45,7 +47,7 @@ public class PullData extends AppCompatActivity {
     private CartListAdapter mAdapter;
     private CoordinatorLayout coordinatorLayout;
    /* private List<Item> cartList;*/
-    private List<Item> data_list = new ArrayList<>();
+    public static  List<Item> data_list = new ArrayList<>();
     Context c;
     private static final String URL = "https://api.androidhive.info/json/";
 
@@ -78,6 +80,7 @@ public class PullData extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(mAdapter);
 
+
     }
     private void callApi() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -109,7 +112,9 @@ public class PullData extends AppCompatActivity {
                 data_list = response.body();
                 mAdapter = new CartListAdapter(getApplicationContext(), data_list);
                 recyclerView.setAdapter(mAdapter);
-                Toast.makeText(getApplicationContext(), "Hello"+data_list, Toast.LENGTH_LONG).show();
+
+
+
             }
 
             @Override
@@ -117,5 +122,14 @@ public class PullData extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Couldn't fetch the menu! Pleas try again.", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void itemClicked(View view, int position) {
+       /* Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra("ItemPosition", data.get(position));
+        startActivity(intent);*/
+       Log.e("click","click");
+      /*  Toast.makeText(getApplicationContext(), "position"+data_list.get(position), Toast.LENGTH_LONG).show();*/
     }
 }

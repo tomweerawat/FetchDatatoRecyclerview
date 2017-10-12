@@ -1,19 +1,28 @@
 package com.example.hotumit.myapplication.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.hotumit.myapplication.ClickListener;
+import com.example.hotumit.myapplication.DetailActivity;
+import com.example.hotumit.myapplication.MapsActivity;
 import com.example.hotumit.myapplication.Model.Item;
+import com.example.hotumit.myapplication.PullData;
 import com.example.hotumit.myapplication.R;
 
 import java.util.List;
+
+import retrofit2.Callback;
 
 /**
  * Created by HOTUM IT on 12/10/2560.
@@ -23,6 +32,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
 
     private Context context;
     private List<Item> cartList;
+    private static ClickListener clicklistener = null;
     public CartListAdapter(Context context, List<Item> cartList) {
         this.context = context;
         this.cartList = cartList;
@@ -34,6 +44,10 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
 
         return new MyViewHolder(itemView);
     }
+    public void setClickListener(ClickListener listener) {
+        this.clicklistener = listener;
+    }
+
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
@@ -51,7 +65,9 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
         return cartList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name, description, price;
         public ImageView thumbnail;
         public RelativeLayout viewBackground, viewForeground;
@@ -63,6 +79,22 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
             thumbnail = view.findViewById(R.id.thumbnail);
             viewBackground = view.findViewById(R.id.view_background);
             viewForeground = view.findViewById(R.id.view_foreground);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (clicklistener != null) {
+                clicklistener.itemClicked(v, getAdapterPosition());
+            }else {
+                /*Toast.makeText(v.getContext(), "position = " + PullData.data_list.get(getPosition()), Toast.LENGTH_SHORT).show();
+                Log.e("ggwp","ggwp"+PullData.data_list.get(getPosition()));*/
+                Intent i = new Intent(context,DetailActivity.class);
+                i.putExtra("ItemPosition", PullData.data_list.get(getPosition()));
+                context.startActivity(i);
+            }
+
+
         }
     }
 }

@@ -1,17 +1,37 @@
 package com.example.hotumit.myapplication.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by ravi on 26/09/17.
  */
 
-public class Item {
+public class Item implements Parcelable {
+    @Expose
+    @SerializedName("id")
     int id;
+    @Expose
+    @SerializedName("name")
     String name;
+    @Expose
+    @SerializedName("description")
     String description;
+    @Expose
+    @SerializedName("price")
     double price;
+    @Expose
+    @SerializedName("thumbnail")
     String thumbnail;
 
-    public Item() {
+    public Item(Parcel parcel) {
+        setId(parcel.readInt());
+        setDescription(parcel.readString());
+        setName(parcel.readString());
+        setPrice(parcel.readDouble());
     }
 
     public int getId() {
@@ -52,5 +72,31 @@ public class Item {
 
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(getId());
+        dest.writeString(getName());
+        dest.writeString(getDescription());
+        dest.writeString(getThumbnail());
+        dest.writeDouble(getPrice());
+
     }
 }
