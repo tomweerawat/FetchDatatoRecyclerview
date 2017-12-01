@@ -25,11 +25,12 @@ public class DetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
         item = getIntent().getExtras().getParcelable("ItemPosition");
-        Log.e("zzzz","zzzz"+item.getName());
+        Log.e("zzzz","zzzz"+item.getThumbnail());
         initview();
 
 
     }
+
     private void initview(){
         txtmsg = (TextView) findViewById(R.id.txtmsg);
         imageView = (ImageView) findViewById(R.id.imageView);
@@ -39,8 +40,10 @@ public class DetailActivity extends Activity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
 
-        txtmsg.setText(item.getId()+"\n"+item.getThumbnail()+"\n"+item.getName()+"\n"+item.getPrice());
+        txtmsg.setText(item.getName());
+
 
 
     }
+
 }

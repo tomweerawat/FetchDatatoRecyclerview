@@ -58,6 +58,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
         Glide.with(context)
                 .load(item.getThumbnail())
                 .into(holder.thumbnail);
+        Log.e("pic","pic"+item.getThumbnail());
     }
 
     @Override
@@ -89,8 +90,10 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
             }else {
                 /*Toast.makeText(v.getContext(), "position = " + PullData.data_list.get(getPosition()), Toast.LENGTH_SHORT).show();
                 Log.e("ggwp","ggwp"+PullData.data_list.get(getPosition()));*/
+          /*      Toast.makeText(context,"ggwp",Toast.LENGTH_LONG).show();*/
                 Intent i = new Intent(context,DetailActivity.class);
-                i.putExtra("ItemPosition", PullData.data_list.get(getPosition()));
+                i.putExtra("ItemPosition", PullData.data_list.get(getAdapterPosition()));
+              /*  Toast.makeText(v.getContext(), "position = " + PullData.data_list.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();*/
                 context.startActivity(i);
             }
 

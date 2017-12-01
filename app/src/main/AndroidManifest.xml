@@ -34,7 +34,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".PullData"
+            android:name=".SplashScreen"
             android:label="@string/title_activity_maps" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +45,7 @@
         <activity android:name=".MapsActivity"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".DetailActivity"/>
+        <activity android:name=".PullData"/>
 
     </application>
 

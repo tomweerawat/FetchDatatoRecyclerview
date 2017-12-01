@@ -93,8 +93,8 @@ public class Item implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(getId());
-        dest.writeString(getName());
         dest.writeString(getDescription());
+        dest.writeString(getName());
         dest.writeString(getThumbnail());
         dest.writeDouble(getPrice());
 

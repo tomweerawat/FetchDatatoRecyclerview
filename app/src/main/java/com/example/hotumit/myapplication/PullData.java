@@ -31,6 +31,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -69,6 +70,12 @@ public class PullData extends AppCompatActivity implements ClickListener {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.my_cart));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
@@ -132,4 +139,16 @@ public class PullData extends AppCompatActivity implements ClickListener {
        Log.e("click","click");
       /*  Toast.makeText(getApplicationContext(), "position"+data_list.get(position), Toast.LENGTH_LONG).show();*/
     }
-}
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent i = new Intent(getBaseContext(),MapsActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+                }
+                }

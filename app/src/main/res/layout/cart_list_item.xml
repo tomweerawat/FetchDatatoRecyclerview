@@ -42,7 +42,9 @@
             android:id="@+id/thumbnail"
             android:layout_width="@dimen/thumbnail"
             android:layout_height="@dimen/thumbnail"
-            android:layout_marginRight="@dimen/activity_padding_horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:scaleType="centerCrop" />
 
         <TextView
