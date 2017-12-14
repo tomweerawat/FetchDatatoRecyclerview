@@ -33,6 +33,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
     private Context context;
     private List<Item> cartList;
     private static ClickListener clicklistener = null;
+    public  Item item;
     public CartListAdapter(Context context, List<Item> cartList) {
         this.context = context;
         this.cartList = cartList;
@@ -40,7 +41,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cart_list_item, parent, false);
+                .inflate(R.layout.activity_home, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -51,7 +52,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final Item item = cartList.get(position);
+        item = cartList.get(position);
         holder.name.setText(item.getName());
         holder.description.setText(item.getDescription());
         holder.price.setText(item.getPrice()+""+"Baht");
@@ -88,12 +89,11 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
             if (clicklistener != null) {
                 clicklistener.itemClicked(v, getAdapterPosition());
             }else {
-                /*Toast.makeText(v.getContext(), "position = " + PullData.data_list.get(getPosition()), Toast.LENGTH_SHORT).show();
-                Log.e("ggwp","ggwp"+PullData.data_list.get(getPosition()));*/
-          /*      Toast.makeText(context,"ggwp",Toast.LENGTH_LONG).show();*/
+
                 Intent i = new Intent(context,DetailActivity.class);
-                i.putExtra("ItemPosition", PullData.data_list.get(getAdapterPosition()));
-              /*  Toast.makeText(v.getContext(), "position = " + PullData.data_list.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();*/
+       /*         i.putExtra("ItemPosition", PullData.data_list.get(getAdapterPosition()));*/
+                i.putExtra("ItemPosition", cartList.get(getAdapterPosition()));
+              /*  Toast.makeText(v.getContext(), "position = " + cartList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();*/
                 context.startActivity(i);
             }
 
