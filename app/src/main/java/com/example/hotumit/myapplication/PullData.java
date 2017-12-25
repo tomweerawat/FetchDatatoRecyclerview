@@ -82,8 +82,8 @@ public class PullData extends AppCompatActivity implements ClickListener {
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
       /*  mAdapter = new CartListAdapter(this, data_list);
         Log.e("data_list","data_list"+data_list);*/
-        /*RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());*/
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+      /*  RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(),2);*/
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));

@@ -11,7 +11,7 @@
         android:id="@+id/txtmsg"
         android:text="Hello"
         android:textSize="24dp"
-       />
+        />
 
     <ImageView
         android:id="@+id/imageView"

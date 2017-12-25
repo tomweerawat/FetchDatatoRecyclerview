@@ -63,7 +63,7 @@ public class SplashScreen extends AwesomeSplash {
 
     }
     private void gotoactivity(){
-        Intent i = new Intent(getBaseContext(),PullData.class);
+        Intent i = new Intent(getBaseContext(),Activity_Login.class);
         startActivity(i);
     }
 }
