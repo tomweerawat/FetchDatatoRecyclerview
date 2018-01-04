@@ -93,6 +93,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyView
                 Intent i = new Intent(context,DetailActivity.class);
        /*         i.putExtra("ItemPosition", PullData.data_list.get(getAdapterPosition()));*/
                 i.putExtra("ItemPosition", cartList.get(getAdapterPosition()));
+                Log.e("cartList","cartList"+cartList.get(getAdapterPosition()).getThumbnail());
               /*  Toast.makeText(v.getContext(), "position = " + cartList.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();*/
                 context.startActivity(i);
             }

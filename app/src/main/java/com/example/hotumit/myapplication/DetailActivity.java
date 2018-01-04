@@ -26,7 +26,8 @@ public class DetailActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
-        item = getIntent().getExtras().getParcelable("ItemPosition");
+       /* item = getIntent().getExtras().getParcelable("ItemPosition");*/
+        item = getIntent().getParcelableExtra("ItemPosition");
         Toast.makeText(getApplicationContext(), "position = " + item.getThumbnail(), Toast.LENGTH_SHORT).show();
         initview();
 

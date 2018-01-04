@@ -14,25 +14,26 @@ public class Item implements Parcelable {
     @Expose
     @SerializedName("id")
     int id;
-    @Expose
-    @SerializedName("name")
-    String name;
-    @Expose
-    @SerializedName("description")
-    String description;
-    @Expose
-    @SerializedName("price")
-    double price;
-    @Expose
-    @SerializedName("thumbnail")
-    String thumbnail;
 
-    public Item(Parcel parcel) {
-        setId(parcel.readInt());
-        setDescription(parcel.readString());
-        setName(parcel.readString());
-        setPrice(parcel.readDouble());
+    protected Item(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        description = in.readString();
+        price = in.readDouble();
+        thumbnail = in.readString();
     }
+
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -74,29 +75,31 @@ public class Item implements Parcelable {
         this.thumbnail = thumbnail;
     }
 
+    @Expose
+    @SerializedName("name")
+    String name;
+    @Expose
+    @SerializedName("description")
+    String description;
+    @Expose
+    @SerializedName("price")
+    double price;
+    @Expose
+    @SerializedName("thumbnail")
+    String thumbnail;
+
+
     @Override
     public int describeContents() {
         return 0;
     }
-    public static final Creator<Item> CREATOR = new Creator<Item>() {
-        @Override
-        public Item createFromParcel(Parcel in) {
-            return new Item(in);
-        }
-
-        @Override
-        public Item[] newArray(int size) {
-            return new Item[size];
-        }
-    };
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(getId());
-        dest.writeString(getDescription());
-        dest.writeString(getName());
-        dest.writeString(getThumbnail());
-        dest.writeDouble(getPrice());
-
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeDouble(price);
+        dest.writeString(thumbnail);
     }
 }
